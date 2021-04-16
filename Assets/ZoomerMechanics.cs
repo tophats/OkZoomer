@@ -3,8 +3,72 @@ using System.Collections.Generic;
 using UnityEngine;
  
 public class ZoomerMechanics : MonoBehaviour {
- 
+
     //Public variables
+
+    public float currentZoomPercentage = 1f;
+
+    public float minZoom = 0.1f, maxZoom = 2.0f;
+    public float changeSize;
+    public float time;
+    private float timePassed = 0.0f;
+    private Vector3 originalScale;
+    private bool active = false;
+
+    //TODO - Over time
+    private float progress;
+
+    void Start()
+    {
+        originalScale = transform.localScale;
+    }
+
+    private void FixedUpdate()
+    {
+
+        Debug.Log(currentZoomPercentage);
+
+        //Test Controls
+        if (Input.GetAxis("Mouse ScrollWheel") < 0f) {
+            shrink();
+        }
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f) {
+            grow();
+        }
+
+        if (active) {
+            timePassed += Time.deltaTime * 1000.0f;
+            //0 - 1 with time
+            progress = (timePassed / time);
+
+            currentZoomPercentage = Mathf.Clamp(currentZoomPercentage, minZoom, maxZoom);
+
+            transform.localScale = new Vector3(
+                            currentZoomPercentage * originalScale.x,
+                            currentZoomPercentage * originalScale.y,
+                            currentZoomPercentage * originalScale.z
+                        );
+        }
+    
+    }
+
+    public void grow()
+    {
+        active = true;
+        currentZoomPercentage += changeSize;
+        timePassed = 0.0f;
+    }
+
+    public void shrink()
+    {
+        active = true;
+        currentZoomPercentage -= changeSize;
+        timePassed = 0.0f;
+    }
+
+    ///////////////////////////////////////////////////////////////////
+
+    /*//Public variables
     //When triggering shrink() GameObject will scale down to [shrunkScale] over [time]
     public Vector3 shrunkScale;
     //When triggering grow() GameObject will scale up to [grownScale] over [time]
@@ -32,7 +96,7 @@ public class ZoomerMechanics : MonoBehaviour {
     {
           
            if (Input.GetKeyDown(KeyCode.A)) {
-
+            Debug.Log("TEST");
             shrink();
            }
 
@@ -151,5 +215,5 @@ public class ZoomerMechanics : MonoBehaviour {
         active = true;
         action = Actions.NORMALIZING;
         timePassed = 0.0f;
-    }
+    }*/
 }

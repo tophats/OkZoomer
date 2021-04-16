@@ -296,11 +296,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1208144871472054}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1d88ce588e854a1cb64c1a24ae3cee4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shrunkScale: {x: 0.5, y: 0.5, z: 0.5}
-  grownScale: {x: 1, y: 1, z: 1}
+  targetZoomPercentage: 1
+  minZoom: 0.1
+  maxZoom: 2
+  changeSize: 0
   time: 0
