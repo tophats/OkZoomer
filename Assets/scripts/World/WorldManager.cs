@@ -61,18 +61,19 @@ public class WorldManager : MonoBehaviour
     public void SpawnNewObstacle()
     {
         GameObject ToInstantiate = Tiles[Random.Range(0, Tiles.Length)];
-        GameObject Instance;
+        GameObject CreatedObject;
         float RandomY = Random.Range(ObstacleHeight.minimum, ObstacleHeight.maximum);
         if (Obstacles.Count == 0)
         {
-            Instance = Instantiate(ToInstantiate, new Vector3(PlayerLocation.position.x + FirstGeneration, PlayerLocation.position.y + RandomY, PlayerLocation.position.z), Quaternion.identity) as GameObject;
+            CreatedObject = Instantiate(ToInstantiate, new Vector3(PlayerLocation.position.x + FirstGeneration, PlayerLocation.position.y + RandomY, PlayerLocation.position.z), Quaternion.identity) as GameObject;
         }
         else
         {
             float RandomX = Random.Range(ObstacleDistance.minimum, ObstacleDistance.maximum);
-            Transform LastGenerated = Obstacles[Obstacles.Count].transform;
-            Instance = Instantiate(ToInstantiate, new Vector3(LastGenerated.position.x + RandomX, PlayerLocation.position.y + RandomY, PlayerLocation.position.z), Quaternion.identity) as GameObject;
+            Transform LastGenerated = Obstacles[Obstacles.Count-1].transform;
+            CreatedObject = Instantiate(ToInstantiate, new Vector3(LastGenerated.position.x + RandomX, PlayerLocation.position.y + RandomY, PlayerLocation.position.z), Quaternion.identity) as GameObject;
         }
+        Obstacles.Add(CreatedObject);
 
     }
 }
