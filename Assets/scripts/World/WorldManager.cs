@@ -1,9 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random; 		//Tells Random to use the Unity Engine random number generator.
 
 public class WorldManager : MonoBehaviour
 {
+    // Count to be used for minimum and maximum distance between two obstacles
+    [Serializable]
+    public class Count
+    {
+        public float minimum;             //Minimum value for our Count class.
+        public float maximum;             //Maximum value for our Count class.
+
+
+        //Assignment constructor.
+        public Count(float min, float max)
+        {
+            minimum = min;
+            maximum = max;
+        }
+    }
     public static WorldManager Instance { get; private set; }
 
     public Transform PlayerLocation;
@@ -11,7 +27,9 @@ public class WorldManager : MonoBehaviour
     public GameObject[] tiles;
     public int MaximumObstacles = 10;   // Maximum number of game objects that can be instantiated at one time
     public float FirstGeneration = 10.0f;
+    [SerializeField]
     public Count ObstacleDistance = new Count(10.0f, 20.0f);
+    [SerializeField]
     public Count ObstacleHeight = new Count(-10.0f, 20.0f);
     private int GenerationCount = 0;
     private List<GameObject> Obstacles = new List<GameObject>();
@@ -56,22 +74,5 @@ public class WorldManager : MonoBehaviour
             Instance = Instantiate(toInstantiate, new Vector3(LastGenerated.x + RandomX, PlayerLocation.y + RandomY, PlayerLocation.z), Quaternion.identity) as GameObject;
         }
 
-    }
-
-
-    // Count to be used for minimum and maximum distance between two obstacles
-    [Serializable]
-    public class Count
-    {
-        public float minimum;             //Minimum value for our Count class.
-        public float maximum;             //Maximum value for our Count class.
-
-
-        //Assignment constructor.
-        public Count(float min, float max)
-        {
-            minimum = min;
-            maximum = max;
-        }
     }
 }
