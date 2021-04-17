@@ -27,11 +27,13 @@ public class WorldManager : MonoBehaviour
 
     public GameObject[] Tiles;
     public int MaximumObstacles = 10;   // Maximum number of game objects that can be instantiated at one time
-    public float FirstGeneration = 10.0f;
+    public float FirstGeneration = 5.0f;
     [SerializeField]
-    public Count ObstacleDistance = new Count(10.0f, 20.0f);
+    public Count ObstacleDistance = new Count(5.0f, 8.0f);
     [SerializeField]
-    public Count ObstacleHeight = new Count(-10.0f, 20.0f);
+    public Count ObstacleGap = new Count(1.0f, 2.0f);
+    [SerializeField]
+    public Count ObstacleHeight = new Count(1.5f, 2.0f);
     private int GenerationCount = 0;
     private List<GameObject> Obstacles = new List<GameObject>();
 
@@ -61,19 +63,25 @@ public class WorldManager : MonoBehaviour
     public void SpawnNewObstacle()
     {
         GameObject ToInstantiate = Tiles[Random.Range(0, Tiles.Length)];
-        GameObject CreatedObject;
+        GameObject CreatedObjectTop;
+        GameObject CreatedObjectBot;
         float RandomY = Random.Range(ObstacleHeight.minimum, ObstacleHeight.maximum);
+        float RandomYGap = Random.Range(ObstacleGap.minimum, ObstacleGap.maximum);
+        float ObjHeight = ToInstantiate.GetComponent<Renderer>().bounds.size.y / 2;
         if (Obstacles.Count == 0)
         {
-            CreatedObject = Instantiate(ToInstantiate, new Vector3(PlayerLocation.position.x + FirstGeneration, PlayerLocation.position.y + RandomY, PlayerLocation.position.z), Quaternion.identity) as GameObject;
+            CreatedObjectTop = Instantiate(ToInstantiate, new Vector3(PlayerLocation.position.x + FirstGeneration, PlayerLocation.position.y + RandomY, PlayerLocation.position.z), Quaternion.identity) as GameObject;
+            CreatedObjectBot = Instantiate(ToInstantiate, new Vector3(PlayerLocation.position.x + FirstGeneration, PlayerLocation.position.y + RandomY - ObjHeight - RandomYGap, PlayerLocation.position.z), Quaternion.identity) as GameObject;
         }
         else
         {
             float RandomX = Random.Range(ObstacleDistance.minimum, ObstacleDistance.maximum);
             Transform LastGenerated = Obstacles[Obstacles.Count-1].transform;
-            CreatedObject = Instantiate(ToInstantiate, new Vector3(LastGenerated.position.x + RandomX, PlayerLocation.position.y + RandomY, PlayerLocation.position.z), Quaternion.identity) as GameObject;
+            CreatedObjectTop = Instantiate(ToInstantiate, new Vector3(LastGenerated.position.x + RandomX, PlayerLocation.position.y + RandomY, PlayerLocation.position.z), Quaternion.identity) as GameObject;
+            CreatedObjectBot = Instantiate(ToInstantiate, new Vector3(LastGenerated.position.x + RandomX, PlayerLocation.position.y + RandomY - ObjHeight - RandomYGap, PlayerLocation.position.z), Quaternion.identity) as GameObject;
         }
-        Obstacles.Add(CreatedObject);
+        Obstacles.Add(CreatedObjectTop);
+        Obstacles.Add(CreatedObjectBot);
 
     }
 }
