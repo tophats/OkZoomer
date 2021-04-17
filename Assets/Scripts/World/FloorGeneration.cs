@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class FloorGeneration : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    // ground generation 
+    public GameObject Ground; // ground
+    public Transform PlayerLocation;
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerEnter2D(Collider2D col)
     {
-        
+        Debug.Log("Collide");
+        Instantiate(Ground, new Vector3(PlayerLocation.position.x + 10, -2.1f, -9.824199f), Quaternion.identity);
+
+        /*
+        ContactPoint contact = collision.contacts[0];
+        Quaternion rotation = Quaternion.FromToRotation(Vector3.up, contact.normal);
+        Vector3 position = contact.point;
+        Instantiate(explosionPrefab, position, rotation);
+        Destroy(gameObject);
+        */
     }
 }
