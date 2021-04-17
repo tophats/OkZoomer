@@ -37,6 +37,9 @@ public class WorldManager : MonoBehaviour
     private int GenerationCount = 0;
     private List<GameObject> Obstacles = new List<GameObject>();
 
+    // ground generation 
+    public GameObject Ground; // ground
+
     void OnEnable()
     {
         Instance = this;
@@ -83,5 +86,20 @@ public class WorldManager : MonoBehaviour
         Obstacles.Add(CreatedObjectTop);
         Obstacles.Add(CreatedObjectBot);
 
+    }
+
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        Debug.Log("Collide");
+        Instantiate(Ground, new Vector3(PlayerLocation.position.x + FirstGeneration, -2.1f, -9.824199f), Quaternion.identity);
+
+        /*
+        ContactPoint contact = collision.contacts[0];
+        Quaternion rotation = Quaternion.FromToRotation(Vector3.up, contact.normal);
+        Vector3 position = contact.point;
+        Instantiate(explosionPrefab, position, rotation);
+        Destroy(gameObject);
+        */
     }
 }
