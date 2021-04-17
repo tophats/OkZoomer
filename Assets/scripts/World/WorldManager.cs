@@ -73,6 +73,7 @@ public class WorldManager : MonoBehaviour
             Transform LastGenerated = Obstacles[Obstacles.Count].transform;
             Instance = Instantiate(ToInstantiate, new Vector3(LastGenerated.position.x + RandomX, PlayerLocation.position.y + RandomY, PlayerLocation.position.z), Quaternion.identity) as GameObject;
         }
+        Obstacles.Add(Instance);
 
     }
 }
