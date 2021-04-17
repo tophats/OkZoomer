@@ -1,3 +1,4 @@
+using Platformer.Mechanics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,10 @@ public class ZoomerMechanics : MonoBehaviour {
     //Public variables
 
     public float currentZoomPercentage = 1f;
+    public PlayerController player;
+    public float maxSpeedDefault;
+    public float maxJumpDefault;
+    public float defaultGravityMod;
 
     public float minZoom = 0.1f, maxZoom = 2.0f;
     public float changeSize;
@@ -21,6 +26,9 @@ public class ZoomerMechanics : MonoBehaviour {
     void Start()
     {
         originalScale = transform.localScale;
+        maxSpeedDefault = player.maxSpeed;
+        maxJumpDefault = player.jumpTakeOffSpeed;
+        defaultGravityMod = player.gravityModifier;
     }
 
     private void FixedUpdate()
@@ -49,6 +57,10 @@ public class ZoomerMechanics : MonoBehaviour {
                             currentZoomPercentage * originalScale.z
                         );
         }
+
+        player.maxSpeed = maxSpeedDefault * (currentZoomPercentage);
+        player.jumpTakeOffSpeed = maxJumpDefault * (currentZoomPercentage);
+        player.gravityModifier = defaultGravityMod * currentZoomPercentage;
     
     }
 
@@ -56,6 +68,7 @@ public class ZoomerMechanics : MonoBehaviour {
     {
         active = true;
         currentZoomPercentage += changeSize;
+        this.transform.position = new Vector3(transform.position.x, transform.position.y + 0.2f, transform.position.z);
         timePassed = 0.0f;
     }
 

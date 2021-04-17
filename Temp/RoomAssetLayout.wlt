@@ -427,7 +427,7 @@ MonoBehaviour:
   m_LastFolders:
   - Assets/FPS/Prefabs/Level/Rooms
   m_LastFoldersGridSize: 96
-  m_LastProjectPath: /Users/emergingtechnologies/Zoomer
+  m_LastProjectPath: C:\Users\aBiel\GameJam\OkZoomer
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
