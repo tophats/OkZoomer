@@ -70,7 +70,7 @@ public class WorldManager : MonoBehaviour
         else
         {
             float RandomX = Random.Range(ObstacleDistance.minimum, ObstacleDistance.maximum);
-            Transform LastGenerated = Obstacles[Obstacles.Count].Transform;
+            Transform LastGenerated = Obstacles[Obstacles.Count].transform;
             Instance = Instantiate(ToInstantiate, new Vector3(LastGenerated.position.x + RandomX, PlayerLocation.position.y + RandomY, PlayerLocation.position.z), Quaternion.identity) as GameObject;
         }
 
