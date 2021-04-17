@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WorldManager : MonoBehaviour
 {
-    public static GameController Instance { get; private set; }
+    public static WorldManager Instance { get; private set; }
 
     public Transform PlayerLocation;
 
@@ -21,16 +21,20 @@ public class WorldManager : MonoBehaviour
         Instance = this;
     }
 
-    void Awake()
+    void OnDisable()
     {
-
+        if (Instance == this) Instance = null;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Obstacles.Count < MaximumObstacles) {
-            SpawnNewObstacle();
+        if (Instance == this)
+        {
+            if (Obstacles.Count < MaximumObstacles)
+            {
+                SpawnNewObstacle();
+            }
         }
 
     }
