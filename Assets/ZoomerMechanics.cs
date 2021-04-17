@@ -58,9 +58,9 @@ public class ZoomerMechanics : MonoBehaviour {
                         );
         }
 
-        player.maxSpeed = maxSpeedDefault * (currentZoomPercentage);
-        player.jumpTakeOffSpeed = maxJumpDefault * (currentZoomPercentage);
-        player.gravityModifier = defaultGravityMod * currentZoomPercentage;
+        //player.maxSpeed = maxSpeedDefault * (currentZoomPercentage);
+        //player.jumpTakeOffSpeed = maxJumpDefault * (currentZoomPercentage);
+        //player.gravityModifier = defaultGravityMod * currentZoomPercentage;
     
     }
 
@@ -68,7 +68,7 @@ public class ZoomerMechanics : MonoBehaviour {
     {
         active = true;
         currentZoomPercentage += changeSize;
-        this.transform.position = new Vector3(transform.position.x, transform.position.y + 0.2f, transform.position.z);
+        this.transform.position = new Vector3(transform.position.x, transform.position.y + 0.1f, transform.position.z);
         timePassed = 0.0f;
     }
 
