@@ -25,7 +25,7 @@ public class WorldManager : MonoBehaviour
 
     public Transform PlayerLocation;
 
-    public GameObject[] tiles;
+    public GameObject[] Tiles;
     public int MaximumObstacles = 10;   // Maximum number of game objects that can be instantiated at one time
     public float FirstGeneration = 10.0f;
     [SerializeField]
@@ -60,19 +60,18 @@ public class WorldManager : MonoBehaviour
 
     public void SpawnNewObstacle()
     {
-        GameObject ToInstantiate = tiles[Random.Range(0, floorTiles.Length)];
+        GameObject ToInstantiate = tiles[Random.Range(0, Tiles.Length)];
         GameObject Instance;
         float RandomY = Random.Range(ObstacleHeight.minimum, ObstacleHeight.maximum);
         if (Obstacles.Count == 0)
         {
-            Instance = Instantiate(toInstantiate, new Vector3(PlayerLocation.x + FirstGeneration, PlayerLocation.y + RandomY, PlayerLocation.z), Quaternion.identity) as GameObject;
+            Instance = Instantiate(ToInstantiate, new Vector3(PlayerLocation.position.x + FirstGeneration, PlayerLocation.position.y + RandomY, PlayerLocation.position.z), Quaternion.identity) as GameObject;
         }
         else
         {
             float RandomX = Random.Range(ObstacleDistance.minimum, ObstacleDistance.maximum);
-            float RandomY = Random.Range(ObstacleHeight.minimum, ObstacleHeight.maximum);
             Transform LastGenerated = Obstacles[Obstacles.count].Transform;
-            Instance = Instantiate(toInstantiate, new Vector3(LastGenerated.x + RandomX, PlayerLocation.y + RandomY, PlayerLocation.z), Quaternion.identity) as GameObject;
+            Instance = Instantiate(toInstantiate, new Vector3(LastGenerated.position.x + RandomX, PlayerLocation.position.y + RandomY, PlayerLocation.position.z), Quaternion.identity) as GameObject;
         }
 
     }
