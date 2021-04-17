@@ -10,7 +10,6 @@ namespace Platformer.Mechanics
     /// </summary> 
     public class GameController : MonoBehaviour
     {
-        public static WorldManager WorldManager;
         public static GameController Instance { get; private set; }
 
         //This model field is public and can be therefore be modified in the 
@@ -36,7 +35,6 @@ namespace Platformer.Mechanics
             if (Instance == this)
             {
                 Simulation.Tick();
-                WorldManager.Tick();
             }
         }
     }
