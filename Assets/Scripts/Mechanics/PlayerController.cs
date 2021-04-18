@@ -14,7 +14,6 @@ namespace Platformer.Mechanics
     /// </summary>
     public class PlayerController : KinematicObject
     {
-
         public ZoomerMechanics zoomerScript;
 
         public AudioClip jumpAudio;
@@ -58,6 +57,7 @@ namespace Platformer.Mechanics
         {
             if (controlEnabled)
             {
+                // move.x = Input.GetAxis("Horizontal") * PlayerTransform.localScale.x;
                 move.x = Input.GetAxis("Horizontal");
                 if (jumpState == JumpState.Grounded && Input.GetButtonDown("Jump"))
                     jumpState = JumpState.PrepareToJump;
