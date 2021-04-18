@@ -55,6 +55,7 @@ public class WorldManager : MonoBehaviour
     {
         if (Instance == this)
         {
+            Cleanup();
             if (Obstacles.Count < MaximumObstacles)
             {
                 SpawnNewObstacle();
@@ -86,6 +87,22 @@ public class WorldManager : MonoBehaviour
         Obstacles.Add(CreatedObjectTop);
         Obstacles.Add(CreatedObjectBot);
 
+    }
+
+    public void Cleanup() 
+    {
+        GameObject ToCleanup = Obstacles[0];
+        if (ToCleanup.transform.position.x < PlayerLocation.position.x - 50.0f){ 
+            Destroy(ToCleanup);
+            Obstacles.RemoveAt(0);
+        }
+    }
+
+    public void CleanupAll() {
+        for (int i = 0; i < Obstacles.Count; i++) {
+            Destroy(Obstacles[i]);
+        }
+        Obstacles.RemoveAll();
     }
 
 
