@@ -20,7 +20,7 @@ public class MoveDeathMist : MonoBehaviour
         }
         else
         {
-            transform.position = transform.position + new Vector3((1.5 * (transform.position.x)) * Time.deltaTime, 0, 0);
+            transform.position = transform.position + new Vector3((1.5f * (transform.position.x)) * Time.deltaTime, 0, 0);
         }
     }
 }
