@@ -101,8 +101,8 @@ public class WorldManager : MonoBehaviour
     public void CleanupAll() {
         for (int i = 0; i < Obstacles.Count; i++) {
             Destroy(Obstacles[i]);
+            Obstacles.RemoveAt(i);
         }
-        Obstacles.RemoveAll();
     }
 
 
