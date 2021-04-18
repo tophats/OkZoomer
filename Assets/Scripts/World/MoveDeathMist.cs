@@ -14,6 +14,13 @@ public class MoveDeathMist : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = transform.position + new Vector3(Mathf.Abs(1 * (transform.position.x)) * Time.deltaTime, 0, 0);
+        if (transform.position.x > -1 || transform.position.x < 1)
+        {
+            transform.position = transform.position + new Vector3(Mathf.Abs(1 * (1)) * Time.deltaTime, 0, 0);
+        }
+        else
+        {
+            transform.position = transform.position + new Vector3(Mathf.Abs(1 * (transform.position.x)) * Time.deltaTime, 0, 0);
+        }
     }
 }
