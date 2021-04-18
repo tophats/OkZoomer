@@ -34,7 +34,7 @@ public class ZoomerMechanics : MonoBehaviour {
     private void FixedUpdate()
     {
 
-        //Debug.Log(currentZoomPercentage);
+        Debug.Log(currentZoomPercentage);
 
         //Test Controls
         if (Input.GetAxis("Mouse ScrollWheel") < 0f) {
