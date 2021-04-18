@@ -31,9 +31,9 @@ public class WorldManager : MonoBehaviour
     [SerializeField]
     public Count ObstacleDistance = new Count(5.0f, 8.0f);
     [SerializeField]
-    public Count ObstacleGap = new Count(1.0f, 2.0f);
+    public Count ObstacleGap = new Count(1.5f, 3.0f);
     [SerializeField]
-    public Count ObstacleHeight = new Count(1.5f, 2.0f);
+    public Count ObstacleHeight = new Count(0.5f, 2.0f);
     private int GenerationCount = 0;
     private List<GameObject> Obstacles = new List<GameObject>();
 
@@ -103,20 +103,5 @@ public class WorldManager : MonoBehaviour
             Destroy(Obstacles[i]);
             Obstacles.RemoveAt(i);
         }
-    }
-
-
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        Debug.Log("Collide");
-        Instantiate(Ground, new Vector3(PlayerLocation.position.x + FirstGeneration, -2.1f, -9.824199f), Quaternion.identity);
-
-        /*
-        ContactPoint contact = collision.contacts[0];
-        Quaternion rotation = Quaternion.FromToRotation(Vector3.up, contact.normal);
-        Vector3 position = contact.point;
-        Instantiate(explosionPrefab, position, rotation);
-        Destroy(gameObject);
-        */
     }
 }
