@@ -20,7 +20,7 @@ public class MoveDeathMist : MonoBehaviour
         }
         else
         {
-            transform.position = transform.position + new Vector3((Mathf.Min(transform.position.x/5, 5.0f)) * Time.deltaTime, 0, 0);
+            transform.position = transform.position + new Vector3((Mathf.Min(transform.position.x/5, 3.0f)) * Time.deltaTime, 0, 0);
         }
     }
 }
