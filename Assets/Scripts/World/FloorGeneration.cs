@@ -13,7 +13,7 @@ public class FloorGeneration : MonoBehaviour
     {
         Debug.Log("Collide");
         Instantiate(Ground, new Vector3(PlayerLocation.position.x + 10, -2.1f, -9.824199f), Quaternion.identity);
-        Instantiate(Ceiling, new Vector3(PlayerLocation.position.x + 10, 3.5f, -9.824199f), Quaternion.identity);
+        Instantiate(Ceiling, new Vector3(PlayerLocation.position.x + 10, 3f, -9.824199f), Quaternion.identity);
         WorldManager.Instance.SpawnNewObstacle();
         WorldManager.Instance.SpawnNewObstacle();
         WorldManager.Instance.SpawnNewObstacle();

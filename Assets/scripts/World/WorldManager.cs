@@ -53,6 +53,7 @@ public class WorldManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (Instance == this)
         {
             Cleanup();
@@ -61,6 +62,7 @@ public class WorldManager : MonoBehaviour
                 SpawnNewObstacle();
             }
         }
+        */
 
     }
 
