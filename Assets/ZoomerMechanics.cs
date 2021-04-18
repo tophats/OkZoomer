@@ -58,9 +58,9 @@ public class ZoomerMechanics : MonoBehaviour {
                         );
         }
 
-        //player.maxSpeed = maxSpeedDefault * (currentZoomPercentage);
-        //player.jumpTakeOffSpeed = maxJumpDefault * (currentZoomPercentage);
-        //player.gravityModifier = defaultGravityMod * currentZoomPercentage;
+        player.maxSpeed = maxSpeedDefault * (currentZoomPercentage);
+        player.jumpTakeOffSpeed = maxJumpDefault * (currentZoomPercentage);
+        player.gravityModifier = defaultGravityMod * currentZoomPercentage;
     
     }
 

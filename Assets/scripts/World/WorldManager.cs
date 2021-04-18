@@ -31,11 +31,14 @@ public class WorldManager : MonoBehaviour
     [SerializeField]
     public Count ObstacleDistance = new Count(5.0f, 8.0f);
     [SerializeField]
-    public Count ObstacleGap = new Count(1.0f, 2.0f);
+    public Count ObstacleGap = new Count(1.5f, 3.0f);
     [SerializeField]
-    public Count ObstacleHeight = new Count(1.5f, 2.0f);
+    public Count ObstacleHeight = new Count(0.5f, 2.0f);
     private int GenerationCount = 0;
     private List<GameObject> Obstacles = new List<GameObject>();
+
+    // ground generation 
+    public GameObject Ground; // ground
 
     void OnEnable()
     {
@@ -50,13 +53,16 @@ public class WorldManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (Instance == this)
         {
+            Cleanup();
             if (Obstacles.Count < MaximumObstacles)
             {
                 SpawnNewObstacle();
             }
         }
+        */
 
     }
 
@@ -83,5 +89,21 @@ public class WorldManager : MonoBehaviour
         Obstacles.Add(CreatedObjectTop);
         Obstacles.Add(CreatedObjectBot);
 
+    }
+
+    public void Cleanup() 
+    {
+        GameObject ToCleanup = Obstacles[0];
+        if (ToCleanup.transform.position.x < PlayerLocation.position.x - 50.0f){ 
+            Destroy(ToCleanup);
+            Obstacles.RemoveAt(0);
+        }
+    }
+
+    public void CleanupAll() {
+        for (int i = 0; i < Obstacles.Count; i++) {
+            Destroy(Obstacles[i]);
+            Obstacles.RemoveAt(i);
+        }
     }
 }
