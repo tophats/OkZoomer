@@ -2239,11 +2239,11 @@ MonoBehaviour:
   MaximumObstacles: 10
   FirstGeneration: 5
   ObstacleDistance:
-    minimum: 5
-    maximum: 8
+    minimum: 3
+    maximum: 6
   ObstacleGap:
-    minimum: 2
-    maximum: 4
+    minimum: 1.5
+    maximum: 3
   ObstacleHeight:
     minimum: 0.5
     maximum: 2
@@ -2515,7 +2515,7 @@ PrefabInstance:
     - target: {fileID: 6066749933043811360, guid: 82080708630f9fb4fb5985fa77502136,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6066749933043811360, guid: 82080708630f9fb4fb5985fa77502136,
         type: 3}
